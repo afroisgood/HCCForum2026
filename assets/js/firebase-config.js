@@ -3,12 +3,12 @@
 //  這些值本來就會出現在前端，可以公開；資料安全由 firestore.rules 把關。
 // ============================================================
 export const firebaseConfig = {
-  apiKey: 'YOUR_API_KEY',
-  authDomain: 'YOUR_PROJECT_ID.firebaseapp.com',
-  projectId: 'YOUR_PROJECT_ID',
-  storageBucket: 'YOUR_PROJECT_ID.appspot.com',
-  messagingSenderId: 'YOUR_SENDER_ID',
-  appId: 'YOUR_APP_ID',
+  apiKey: 'AIzaSyB8bn1DyRJskBZzKILdXAPbyauKMQR8kj8',
+  authDomain: 'hccforum2026.firebaseapp.com',
+  projectId: 'hccforum2026',
+  storageBucket: 'hccforum2026.firebasestorage.app',
+  messagingSenderId: '942686353102',
+  appId: '1:942686353102:web:bde9790ce503095785829f',
 };
 
 // 後台管理者帳號（固定），後台登入時只需輸入密碼。
