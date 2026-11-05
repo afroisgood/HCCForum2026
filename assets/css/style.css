@@ -215,7 +215,18 @@ code { background: #f1f4ef; padding: 1px 6px; border-radius: 6px; font-size: .9e
 .stage { position: relative; padding: 4vh 5vw 5vh; display: grid; min-height: 0; }
 
 /* 待機畫面：活動名稱、日期、QR Code */
-.idle { display: grid; grid-template-columns: 1.25fr 1fr; align-items: center; gap: 4vw; min-height: 0; }
+.idle { position: relative; display: grid; grid-template-columns: 1.25fr 1fr; align-items: center; gap: 4vw; min-height: 0; }
+.idle__main, .idle__qr { position: relative; z-index: 1; }
+.idle__count {
+  display: inline-flex; align-items: baseline; gap: .4em;
+  margin-top: 4vh; padding: .5em 1.2em; border-radius: 999px;
+  background: var(--lime); color: var(--ink);
+  font-size: 3.4vh; font-weight: 700; letter-spacing: .12em;
+  box-shadow: 0 8px 24px rgba(13,77,30,.3);
+}
+.idle__count strong { font-size: 1.9em; line-height: 1; letter-spacing: .02em; color: var(--green-ink); }
+.idle__count.bump { animation: bump .6s cubic-bezier(.3,1.6,.5,1); }
+@keyframes bump { 0% { transform: scale(1); } 40% { transform: scale(1.12); } 100% { transform: scale(1); } }
 .idle__title {
   margin: 0; font-size: 9vh; line-height: 1.22; letter-spacing: .14em; font-weight: 700;
   text-shadow: 0 4px 20px rgba(0,0,0,.25);
@@ -294,6 +305,45 @@ code { background: #f1f4ef; padding: 1px 6px; border-radius: 6px; font-size: .9e
   opacity: 0; transition: opacity .3s;
 }
 body.show-ui .fs-btn { opacity: 1; }
+
+/* ---------- 待機畫面裝飾動畫（海報意象） ---------- */
+.deco { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.deco__pair {
+  position: absolute; left: 28%; top: 52%;
+  display: flex; align-items: center; gap: 1.4vh;
+  transform: translateY(-50%);
+}
+.bird { display: block; width: 17vh; animation: glide 5.5s ease-in-out infinite; }
+.bird__svg { display: block; width: 100%; fill: var(--ink); filter: drop-shadow(0 6px 10px rgba(0,0,0,.18)); }
+.bird--l .bird__svg { transform: scaleX(-1); }
+.bird--r { animation-delay: -2.75s; }
+.deco__star {
+  width: 11vh; height: 11vh; flex: none;
+  background: var(--pink);
+  clip-path: polygon(50% 0, 56% 33%, 79% 9%, 67% 39%, 100% 32%, 72% 52%, 98% 74%, 64% 64%, 68% 98%, 50% 70%, 31% 98%, 36% 64%, 2% 74%, 28% 52%, 0 32%, 33% 39%, 21% 9%, 44% 33%);
+  animation: spin 24s linear infinite;
+}
+.deco__dot { position: absolute; border-radius: 50%; animation: float 7s ease-in-out infinite; }
+.deco__dot--lime { width: 5vh; height: 5vh; background: var(--lime); left: 40%; top: 12%; }
+.deco__dot--orange { width: 4vh; height: 4vh; background: var(--orange); left: 25%; bottom: 8%; animation-delay: -2s; animation-duration: 8s; }
+.deco__dot--white { width: 3.4vh; height: 3.4vh; background: #fff; left: 53%; bottom: 18%; animation-delay: -4s; animation-duration: 6s; }
+.deco__dot--orange2 { width: 2.6vh; height: 2.6vh; background: var(--orange); right: 3%; top: 6%; animation-delay: -1s; animation-duration: 9s; }
+@keyframes glide {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-1.6vh) rotate(-2deg); }
+}
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(1.2vh, -1.8vh); }
+  66% { transform: translate(-1vh, -.8vh); }
+}
+/* 標頭插畫緩慢左右漂移 */
+.screen .hero::before { inset: 0 -3vw; animation: drift 40s ease-in-out infinite alternate; }
+@keyframes drift { from { transform: translateX(-1.5vw); } to { transform: translateX(1.5vw); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .bird, .deco__star, .deco__dot, .screen .hero::before, .idle__count.bump { animation: none; }
+}
 
 @keyframes rise { from { opacity: 0; transform: translateY(4vh); } to { opacity: 1; transform: none; } }
 

@@ -51,6 +51,22 @@ function showIdle() {
   $('idle').hidden = false;
 }
 
+// 待機畫面「已收到 N 則提問」（數字由後台更新）
+onSnapshot(doc(fb.db, 'settings', 'app'), (snap) => {
+  const n = snap.exists() ? snap.data().questionCount : undefined;
+  const el = $('count');
+  if (typeof n !== 'number') { el.hidden = true; return; }
+  const numEl = $('count-n');
+  const changed = !el.hidden && numEl.textContent !== String(n);
+  numEl.textContent = n;
+  el.hidden = false;
+  if (changed) {
+    el.classList.remove('bump');
+    void el.offsetWidth; // 重新播放跳動動畫
+    el.classList.add('bump');
+  }
+}, (err) => console.error(err));
+
 onSnapshot(doc(fb.db, 'display', 'current'), (snap) => {
   const data = snap.exists() ? snap.data() : null;
   const firstLoad = lastId === undefined;

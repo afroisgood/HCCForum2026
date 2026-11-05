@@ -20,9 +20,22 @@
 
   <main class="stage" id="stage">
     <section class="idle" id="idle">
-      <div>
+      <!-- 海報意象：兩隻黑鳥相對、中間一顆桃紅星，加上漂浮的圓點 -->
+      <div class="deco" aria-hidden="true">
+        <span class="deco__dot deco__dot--lime"></span>
+        <span class="deco__dot deco__dot--orange"></span>
+        <span class="deco__dot deco__dot--white"></span>
+        <span class="deco__dot deco__dot--orange2"></span>
+        <div class="deco__pair">
+          <span class="bird bird--l"><svg viewBox="0 0 200 140" class="bird__svg"><path d="M0 50 L34 43 C38 25 56 14 72 18 C90 22 96 34 112 44 C150 66 184 84 200 112 C176 130 140 140 110 136 C80 132 58 116 46 96 C40 84 36 70 34 57 Z"/><circle cx="55" cy="37" r="5.5" fill="#1d9be3"/></svg></span>
+          <span class="deco__star"></span>
+          <span class="bird bird--r"><svg viewBox="0 0 200 140" class="bird__svg"><path d="M0 50 L34 43 C38 25 56 14 72 18 C90 22 96 34 112 44 C150 66 184 84 200 112 C176 130 140 140 110 136 C80 132 58 116 46 96 C40 84 36 70 34 57 Z"/><circle cx="55" cy="37" r="5.5" fill="#1d9be3"/></svg></span>
+        </div>
+      </div>
+      <div class="idle__main">
         <h1 class="idle__title">下一代<br>花蓮地方<br>實踐指南</h1>
         <div class="idle__date">11.07<span class="line"></span><small>SAT.</small></div>
+        <div class="idle__count" id="count" hidden>已收到 <strong id="count-n">0</strong> 則提問</div>
       </div>
       <div class="idle__qr">
         <div id="qr"></div>

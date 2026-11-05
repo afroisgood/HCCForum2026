@@ -41,6 +41,15 @@ form.addEventListener('change', (e) => {
   $('speaker-hint').hidden = true;
 });
 
+// 依目前時間預選場次：12:00 前為「跨域對話與交流」，之後為「花蓮實踐指南問與答」
+{
+  const id = new Date().getHours() < 12 ? 'cross' : 'guide';
+  const input = form.querySelector(`input[name="session"][value="${id}"]`);
+  input.checked = true;
+  input.dispatchEvent(new Event('change', { bubbles: true }));
+  $('session-hint').hidden = false;
+}
+
 // ---------- 字數 ----------
 const normalize = (s) => s.replace(/\s+/g, ' ').trim();
 function updateCounter() {
