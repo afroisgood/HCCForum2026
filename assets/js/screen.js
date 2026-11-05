@@ -13,16 +13,14 @@ if (!fb) {
 
 // 把問題字級調到剛好塞滿框
 function fitText() {
-  const box = $('q-box');
+  const body = $('q-body');
   const text = $('q-text');
   let lo = 16;
   let hi = Math.max(24, Math.floor(window.innerHeight * 0.11));
   while (lo < hi) {
     const mid = Math.ceil((lo + hi) / 2);
     text.style.fontSize = `${mid}px`;
-    const style = getComputedStyle(box);
-    const availH = box.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
-    if (text.scrollHeight <= availH && text.scrollWidth <= text.clientWidth + 1) lo = mid;
+    if (text.scrollHeight <= body.clientHeight && text.scrollWidth <= text.clientWidth + 1) lo = mid;
     else hi = mid - 1;
   }
   text.style.fontSize = `${lo}px`;
@@ -38,7 +36,7 @@ function showQuestion(data) {
   $('q-session').textContent = sessionName(data.session);
   $('q-speaker').textContent = `提問對象：${data.speaker}`;
   $('q-text').textContent = data.content;
-  $('q-by').textContent = data.nickname;
+  $('q-nick').textContent = data.nickname;
   const q = $('question');
   q.hidden = false;
   q.style.animation = 'none';

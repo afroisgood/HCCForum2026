@@ -235,7 +235,7 @@ code { background: #f1f4ef; padding: 1px 6px; border-radius: 6px; font-size: .9e
 .idle__qr p { margin: 1.6vh 0 0; font-size: 3vh; font-weight: 700; letter-spacing: .14em; }
 
 /* 抽中問題 */
-.question { display: grid; grid-template-rows: auto 1fr auto; min-height: 0; gap: 3vh; animation: rise .7s cubic-bezier(.2,.8,.2,1); }
+.question { display: grid; grid-template-rows: auto 1fr; min-height: 0; gap: 3vh; animation: rise .7s cubic-bezier(.2,.8,.2,1); }
 .question__tags { display: flex; flex-wrap: wrap; gap: 1.2vw; align-items: center; }
 .tag {
   display: inline-block; padding: .35em 1em; border-radius: 999px;
@@ -248,14 +248,14 @@ code { background: #f1f4ef; padding: 1px 6px; border-radius: 6px; font-size: .9e
   position: relative;
   background: rgba(13,77,30,.78);
   border-radius: 32px;
-  padding: 5vh 4.5vw;
-  display: flex; align-items: center;
+  padding: 4.5vh 4.5vw 5vh;
+  display: flex; flex-direction: column; gap: 2.6vh;
   min-height: 0; overflow: hidden;
   box-shadow: 0 20px 60px rgba(0,0,0,.25);
 }
 .question__box::before {
   content: '';
-  position: absolute; top: -3vh; left: 2.4vw;
+  position: absolute; top: -3vh; right: 2.4vw;
   width: 9vh; height: 9vh;
   background: var(--pink);
   clip-path: polygon(50% 0, 61% 30%, 93% 18%, 72% 45%, 100% 62%, 67% 66%, 69% 100%, 50% 74%, 31% 100%, 33% 66%, 0 62%, 28% 45%, 7% 18%, 39% 30%);
@@ -266,8 +266,16 @@ code { background: #f1f4ef; padding: 1px 6px; border-radius: 6px; font-size: .9e
   font-weight: 700; line-height: 1.55; letter-spacing: .06em;
   white-space: pre-wrap; word-break: break-word;
 }
-.question__by { justify-self: end; font-size: 4vh; font-weight: 700; letter-spacing: .12em; }
-.question__by::before { content: '— '; }
+/* 提問者暱稱：放在問題框開頭，像「某某 提問：」 */
+.question__nick {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: .1em .5em;
+  padding: 0 2.2em 2vh 0;
+  border-bottom: 3px dashed rgba(184,212,51,.55);
+  font-size: 6vh; font-weight: 700; letter-spacing: .1em; line-height: 1.3;
+  color: var(--lime); word-break: break-word;
+}
+.question__nick small { font-size: .6em; letter-spacing: .2em; color: rgba(255,255,255,.85); }
+.question__body { flex: 1 1 auto; min-height: 0; display: flex; align-items: center; }
 
 .drawing {
   position: absolute; inset: 0; z-index: 5;
