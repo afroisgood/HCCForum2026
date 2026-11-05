@@ -1,0 +1,281 @@
+/* 源泉圓體 TW（GenSenRounded2 TW）— SIL OFL 1.1，見 assets/fonts/OFL.txt。
+   由 tools/build-fonts.py 產生，請勿手動修改。 */
+@font-face {
+  font-family: 'GenSen Core';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/core-R.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'GenSen Core';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/core-B.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'GenSen Common';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/common-R.woff2') format('woff2');
+  unicode-range: U+4E01-9F9C;
+}
+@font-face {
+  font-family: 'GenSen Common';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/common-B.woff2') format('woff2');
+  unicode-range: U+4E01-9F9C;
+}
+@font-face {
+  font-family: 'GenSen Rare 00';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/rare-00-R.woff2') format('woff2');
+  unicode-range: U+100-3490;
+}
+@font-face {
+  font-family: 'GenSen Rare 00';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/rare-00-B.woff2') format('woff2');
+  unicode-range: U+100-3490;
+}
+@font-face {
+  font-family: 'GenSen Rare 01';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/rare-01-R.woff2') format('woff2');
+  unicode-range: U+3491-3A6C;
+}
+@font-face {
+  font-family: 'GenSen Rare 01';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/rare-01-B.woff2') format('woff2');
+  unicode-range: U+3491-3A6C;
+}
+@font-face {
+  font-family: 'GenSen Rare 02';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/rare-02-R.woff2') format('woff2');
+  unicode-range: U+3A6D-4048;
+}
+@font-face {
+  font-family: 'GenSen Rare 02';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/rare-02-B.woff2') format('woff2');
+  unicode-range: U+3A6D-4048;
+}
+@font-face {
+  font-family: 'GenSen Rare 03';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/rare-03-R.woff2') format('woff2');
+  unicode-range: U+4049-4624;
+}
+@font-face {
+  font-family: 'GenSen Rare 03';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/rare-03-B.woff2') format('woff2');
+  unicode-range: U+4049-4624;
+}
+@font-face {
+  font-family: 'GenSen Rare 04';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/rare-04-R.woff2') format('woff2');
+  unicode-range: U+4625-4C00;
+}
+@font-face {
+  font-family: 'GenSen Rare 04';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/rare-04-B.woff2') format('woff2');
+  unicode-range: U+4625-4C00;
+}
+@font-face {
+  font-family: 'GenSen Rare 05';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/rare-05-R.woff2') format('woff2');
+  unicode-range: U+4C01-5463;
+}
+@font-face {
+  font-family: 'GenSen Rare 05';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/rare-05-B.woff2') format('woff2');
+  unicode-range: U+4C01-5463;
+}
+@font-face {
+  font-family: 'GenSen Rare 06';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/rare-06-R.woff2') format('woff2');
+  unicode-range: U+5464-5CA3;
+}
+@font-face {
+  font-family: 'GenSen Rare 06';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/rare-06-B.woff2') format('woff2');
+  unicode-range: U+5464-5CA3;
+}
+@font-face {
+  font-family: 'GenSen Rare 07';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/rare-07-R.woff2') format('woff2');
+  unicode-range: U+5CA4-6509;
+}
+@font-face {
+  font-family: 'GenSen Rare 07';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/rare-07-B.woff2') format('woff2');
+  unicode-range: U+5CA4-6509;
+}
+@font-face {
+  font-family: 'GenSen Rare 08';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/rare-08-R.woff2') format('woff2');
+  unicode-range: U+650A-6D26;
+}
+@font-face {
+  font-family: 'GenSen Rare 08';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/rare-08-B.woff2') format('woff2');
+  unicode-range: U+650A-6D26;
+}
+@font-face {
+  font-family: 'GenSen Rare 09';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/rare-09-R.woff2') format('woff2');
+  unicode-range: U+6D28-74F2;
+}
+@font-face {
+  font-family: 'GenSen Rare 09';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/rare-09-B.woff2') format('woff2');
+  unicode-range: U+6D28-74F2;
+}
+@font-face {
+  font-family: 'GenSen Rare 10';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/rare-10-R.woff2') format('woff2');
+  unicode-range: U+74F3-7CCB;
+}
+@font-face {
+  font-family: 'GenSen Rare 10';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/rare-10-B.woff2') format('woff2');
+  unicode-range: U+74F3-7CCB;
+}
+@font-face {
+  font-family: 'GenSen Rare 11';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/rare-11-R.woff2') format('woff2');
+  unicode-range: U+7CCC-84BE;
+}
+@font-face {
+  font-family: 'GenSen Rare 11';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/rare-11-B.woff2') format('woff2');
+  unicode-range: U+7CCC-84BE;
+}
+@font-face {
+  font-family: 'GenSen Rare 12';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/rare-12-R.woff2') format('woff2');
+  unicode-range: U+84C1-8C3E;
+}
+@font-face {
+  font-family: 'GenSen Rare 12';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/rare-12-B.woff2') format('woff2');
+  unicode-range: U+84C1-8C3E;
+}
+@font-face {
+  font-family: 'GenSen Rare 13';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/rare-13-R.woff2') format('woff2');
+  unicode-range: U+8C40-9425;
+}
+@font-face {
+  font-family: 'GenSen Rare 13';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/rare-13-B.woff2') format('woff2');
+  unicode-range: U+8C40-9425;
+}
+@font-face {
+  font-family: 'GenSen Rare 14';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/rare-14-R.woff2') format('woff2');
+  unicode-range: U+9426-9B7B;
+}
+@font-face {
+  font-family: 'GenSen Rare 14';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/rare-14-B.woff2') format('woff2');
+  unicode-range: U+9426-9B7B;
+}
+@font-face {
+  font-family: 'GenSen Rare 15';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/rare-15-R.woff2') format('woff2');
+  unicode-range: U+9B7C-20381;
+}
+@font-face {
+  font-family: 'GenSen Rare 15';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/rare-15-B.woff2') format('woff2');
+  unicode-range: U+9B7C-20381;
+}
+@font-face {
+  font-family: 'GenSen Rare 16';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/rare-16-R.woff2') format('woff2');
+  unicode-range: U+203A0-26DAE;
+}
+@font-face {
+  font-family: 'GenSen Rare 16';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/rare-16-B.woff2') format('woff2');
+  unicode-range: U+203A0-26DAE;
+}
+@font-face {
+  font-family: 'GenSen Rare 17';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/rare-17-R.woff2') format('woff2');
+  unicode-range: U+26DDC-2F9F4;
+}
+@font-face {
+  font-family: 'GenSen Rare 17';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/rare-17-B.woff2') format('woff2');
+  unicode-range: U+26DDC-2F9F4;
+}
+:root { --font-gensen: 'GenSen Core', 'GenSen Common', 'GenSen Rare 00', 'GenSen Rare 01', 'GenSen Rare 02', 'GenSen Rare 03', 'GenSen Rare 04', 'GenSen Rare 05', 'GenSen Rare 06', 'GenSen Rare 07', 'GenSen Rare 08', 'GenSen Rare 09', 'GenSen Rare 10', 'GenSen Rare 11', 'GenSen Rare 12', 'GenSen Rare 13', 'GenSen Rare 14', 'GenSen Rare 15', 'GenSen Rare 16', 'GenSen Rare 17'; }
