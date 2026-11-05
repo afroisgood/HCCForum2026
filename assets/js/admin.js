@@ -68,6 +68,7 @@ function start() {
   unsubs.push(onSnapshot(query(collection(db, 'questions'), orderBy('createdAt', 'desc')), (snap) => {
     state.questions = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
     renderAll();
+    publishCount();
   }, (err) => { console.error(err); toast('讀取提問失敗，請重新登入'); }));
 
   unsubs.push(onSnapshot(displayRef, (snap) => {
@@ -82,6 +83,25 @@ function start() {
     $('open-pill').className = `status-pill ${state.open ? 'open' : 'closed'}`;
     $('toggle-open').textContent = state.open ? '關閉提問' : '重新開放提問';
   }));
+}
+
+// 大螢幕待機畫面的「已收到 N 則提問」：只公開數量，由後台在提問變動時更新
+// （settings/app 本來就是公開可讀、只有管理者可寫，不需要改安全規則）
+let publishedCount = null;
+function publishCount() {
+  const n = state.questions.length;
+  if (n === publishedCount) return;
+  publishedCount = n;
+  // 安全規則會讀取 settings/app 的 open 欄位，缺少時會擋下所有提問，
+  // 所以寫入數量時一定保留 open（沒有文件或沒有欄位時視為開放，與既有行為一致）
+  runTransaction(db, async (tx) => {
+    const snap = await tx.get(settingsRef);
+    const open = snap.exists() && typeof snap.data().open === 'boolean' ? snap.data().open : true;
+    tx.set(settingsRef, { open, questionCount: n }, { merge: true });
+  }).catch((err) => {
+    console.error(err);
+    publishedCount = null;
+  });
 }
 
 // ============================================================
