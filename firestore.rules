@@ -1,0 +1,66 @@
+rules_version = '2';
+
+// 下一代花蓮地方實踐指南｜線上提問平台 Firestore 安全規則
+// - 參與者：只能「新增」提問，看不到任何提問（包含自己的）
+// - 大螢幕：只能讀取 display/current（被抽中的那一題）與 settings/app
+// - 管理者：可讀寫全部
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ★ 若修改後台帳號，這裡與 assets/js/firebase-config.js 的 ADMIN_EMAIL 要一致
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == 'hccforum2026-admin@example.com';
+    }
+
+    function isOpen() {
+      return !exists(/databases/$(database)/documents/settings/app)
+        || get(/databases/$(database)/documents/settings/app).data.open != false;
+    }
+
+    function validSpeaker(session, speaker) {
+      return (session == 'cross' && speaker in ['楊政賢', '陳運成', '文化局'])
+        || (session == 'guide' && speaker in ['黃紋綺', '沙力浪', '陳柏均 Sra']);
+    }
+
+    function hasText(s, max) {
+      return s is string && s.size() <= max && s.matches('(?s).*\\S.*');
+    }
+
+    match /settings/app {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /display/current {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // 防洗版：同一裝置 30 秒內只能送出一次（與提問同一批寫入）
+    match /devices/{deviceId} {
+      allow create: if request.resource.data.keys().hasOnly(['lastAt'])
+        && request.resource.data.lastAt == request.time;
+      allow update: if request.resource.data.keys().hasOnly(['lastAt'])
+        && request.resource.data.lastAt == request.time
+        && request.time > resource.data.lastAt + duration.value(30, 's');
+      allow read, delete: if isAdmin();
+    }
+
+    match /questions/{qid} {
+      // 文件 ID 由「裝置 + 提問內容」產生，同一裝置重送同一題會變成「更新」而被拒絕
+      allow create: if isOpen()
+        && request.resource.data.keys().hasOnly(
+             ['session', 'speaker', 'nickname', 'content', 'deviceId', 'status', 'createdAt'])
+        && validSpeaker(request.resource.data.session, request.resource.data.speaker)
+        && hasText(request.resource.data.nickname, 20)
+        && hasText(request.resource.data.content, 200)
+        && request.resource.data.status == 'pool'
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.deviceId is string
+        && request.resource.data.deviceId.size() <= 64
+        && getAfter(/databases/$(database)/documents/devices/$(request.resource.data.deviceId)).data.lastAt == request.time;
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}
