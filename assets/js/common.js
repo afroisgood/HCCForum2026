@@ -12,12 +12,23 @@ export const EVENT = {
   weekday: 'SAT.',
 };
 
-// 場次與可指定講師（資料庫存 id，畫面顯示 name）
+// 場次與可指定的與談者（資料庫存 id，畫面顯示 name）
+// speakers 是存進資料庫的值，也寫在 firestore.rules 裡，請勿更改；畫面上的稱謂改 SPEAKER_TITLES 即可
 export const SESSIONS = [
   { id: 'cross', name: '跨域對話與交流', speakers: ['楊政賢', '陳運成', '文化局'] },
   { id: 'guide', name: '花蓮實踐指南問與答', speakers: ['黃紋綺', '沙力浪', '陳柏均 Sra'] },
 ];
 export const sessionName = (id) => SESSIONS.find((s) => s.id === id)?.name ?? id;
+
+const SPEAKER_TITLES = {
+  '楊政賢': '楊政賢主任',
+  '陳運成': '陳運成老師',
+  '文化局': '花蓮縣文化局',
+  '黃紋綺': '黃紋綺執行長',
+  '沙力浪': '沙力浪老師',
+  '陳柏均 Sra': '陳柏均 Sra 理事長',
+};
+export const speakerLabel = (id) => SPEAKER_TITLES[id] ?? id;
 
 export const LIMITS = { content: 200, nickname: 20, cooldownSec: 30 };
 

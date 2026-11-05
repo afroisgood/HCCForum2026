@@ -3,7 +3,7 @@ import {
   signInWithEmailAndPassword, signOut, onAuthStateChanged,
 } from '../vendor/firebase.js';
 import {
-  initFirebase, showConfigWarning, ADMIN_EMAIL, SESSIONS, sessionName, escapeHtml, askUrl, qrCanvas, formatTime, EVENT,
+  initFirebase, showConfigWarning, ADMIN_EMAIL, SESSIONS, sessionName, speakerLabel, escapeHtml, askUrl, qrCanvas, formatTime, EVENT,
 } from './common.js';
 import { buildDocx, download } from './docx.js';
 
@@ -101,7 +101,7 @@ function renderDrawControls() {
   }
   const s = SESSIONS.find((x) => x.id === state.drawSession);
   const cur = $('draw-speaker').value;
-  $('draw-speaker').innerHTML = `<option value="">全部講師</option>${s.speakers.map((sp) => `<option${sp === cur ? ' selected' : ''}>${escapeHtml(sp)}</option>`).join('')}`;
+  $('draw-speaker').innerHTML = `<option value="">全部與談者</option>${s.speakers.map((sp) => `<option value="${escapeHtml(sp)}"${sp === cur ? ' selected' : ''}>${escapeHtml(speakerLabel(sp))}</option>`).join('')}`;
   renderPoolCount();
 }
 $('draw-speaker').addEventListener('change', renderPoolCount);
@@ -164,7 +164,7 @@ function renderPreview() {
   el.className = 'preview';
   el.innerHTML = `
     <span class="tag tag--session">${escapeHtml(sessionName(d.session))}</span>
-    <span class="tag tag--speaker">${escapeHtml(d.speaker)}</span>
+    <span class="tag tag--speaker">${escapeHtml(speakerLabel(d.speaker))}</span>
     <p>${escapeHtml(d.content)}</p>
     <div class="by">— ${escapeHtml(d.nickname)}</div>`;
 }
@@ -200,13 +200,13 @@ $('export-word').addEventListener('click', () => {
     const drawn = inSession.filter((q) => q.status === 'drawn').sort((a, b) => (a.drawnAt?.toMillis?.() ?? 0) - (b.drawnAt?.toMillis?.() ?? 0));
     if (drawn.length) {
       blocks.push({ text: '現場抽中順序', bold: true, size: 12, spaceAfter: 4 });
-      drawn.forEach((q, i) => blocks.push({ text: `${i + 1}. ${q.content}（${q.speaker}／${q.nickname}，${formatTime(q.drawnAt)} 抽出）`, size: 11, indent: 12, spaceAfter: 4 }));
+      drawn.forEach((q, i) => blocks.push({ text: `${i + 1}. ${q.content}（${speakerLabel(q.speaker)}／${q.nickname}，${formatTime(q.drawnAt)} 抽出）`, size: 11, indent: 12, spaceAfter: 4 }));
       blocks.push({ text: '', spaceAfter: 6 });
     }
 
     for (const sp of s.speakers) {
       const list = inSession.filter((q) => q.speaker === sp);
-      blocks.push({ text: `提問對象：${sp}（${list.length} 題）`, bold: true, size: 13, spaceAfter: 6 });
+      blocks.push({ text: `提問對象：${speakerLabel(sp)}（${list.length} 題）`, bold: true, size: 13, spaceAfter: 6 });
       if (!list.length) blocks.push({ text: '（無）', size: 11, color: '777777', indent: 12 });
       list.forEach((q, i) => {
         blocks.push({ text: `${i + 1}. ${q.content}`, size: 11, indent: 12, spaceAfter: 2 });
@@ -246,7 +246,7 @@ function renderSpeakerFilter() {
   const sid = $('f-session').value;
   const cur = $('f-speaker').value;
   const speakers = sid ? SESSIONS.find((s) => s.id === sid).speakers : SESSIONS.flatMap((s) => s.speakers);
-  $('f-speaker').innerHTML = `<option value="">全部講師</option>${speakers.map((sp) => `<option${sp === cur ? ' selected' : ''}>${escapeHtml(sp)}</option>`).join('')}`;
+  $('f-speaker').innerHTML = `<option value="">全部與談者</option>${speakers.map((sp) => `<option value="${escapeHtml(sp)}"${sp === cur ? ' selected' : ''}>${escapeHtml(speakerLabel(sp))}</option>`).join('')}`;
 }
 $('f-session').addEventListener('change', () => { renderSpeakerFilter(); renderList(); });
 $('f-speaker').addEventListener('change', renderList);
@@ -282,7 +282,7 @@ function renderList() {
           ${live ? '<span class="q-badge live">大螢幕顯示中</span>' : ''}
           <span class="q-badge ${cls}">${label}</span>
           <span class="tag tag--session">${escapeHtml(sessionName(q.session))}</span>
-          <span class="tag tag--speaker">${escapeHtml(q.speaker)}</span>
+          <span class="tag tag--speaker">${escapeHtml(speakerLabel(q.speaker))}</span>
           <span>${escapeHtml(q.nickname)}</span>
           <span>${formatTime(q.createdAt, true)}</span>
         </div>

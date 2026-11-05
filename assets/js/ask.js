@@ -1,5 +1,5 @@
 import { doc, collection, onSnapshot, writeBatch, serverTimestamp } from '../vendor/firebase.js';
-import { initFirebase, showConfigWarning, SESSIONS, LIMITS, escapeHtml } from './common.js';
+import { initFirebase, showConfigWarning, SESSIONS, LIMITS, escapeHtml, speakerLabel } from './common.js';
 
 const $ = (id) => document.getElementById(id);
 const form = $('ask-form');
@@ -27,7 +27,7 @@ if (!deviceId) {
 }
 nicknameEl.value = store.get('hcc-nickname', '');
 
-// ---------- 場次與講師選項 ----------
+// ---------- 場次與與談者選項 ----------
 $('session-choices').innerHTML = SESSIONS.map((s) => `
   <label class="choice"><input type="radio" name="session" value="${s.id}"><span>${escapeHtml(s.name)}</span></label>
 `).join('');
@@ -36,7 +36,7 @@ form.addEventListener('change', (e) => {
   if (e.target.name !== 'session') return;
   const s = SESSIONS.find((x) => x.id === e.target.value);
   $('speaker-choices').innerHTML = s.speakers.map((sp) => `
-    <label class="choice"><input type="radio" name="speaker" value="${escapeHtml(sp)}"><span>${escapeHtml(sp)}</span></label>
+    <label class="choice"><input type="radio" name="speaker" value="${escapeHtml(sp)}"><span>${escapeHtml(speakerLabel(sp))}</span></label>
   `).join('');
   $('speaker-hint').hidden = true;
 });
@@ -98,7 +98,7 @@ form.addEventListener('submit', async (e) => {
 
   const fail = (msg) => { errorEl.textContent = msg; };
   if (!session) return fail('請選擇場次');
-  if (!speaker) return fail('請選擇想問的講師');
+  if (!speaker) return fail('請選擇想問的與談者');
   if (!nickname) return fail('請填寫暱稱');
   if (nickname.length > LIMITS.nickname) return fail(`暱稱請在 ${LIMITS.nickname} 字以內`);
   if (!content) return fail('請輸入問題內容');

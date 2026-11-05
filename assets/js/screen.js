@@ -1,5 +1,5 @@
 import { doc, onSnapshot } from '../vendor/firebase.js';
-import { initFirebase, showConfigWarning, sessionName, askUrl, qrCanvas } from './common.js';
+import { initFirebase, showConfigWarning, sessionName, speakerLabel, askUrl, qrCanvas } from './common.js';
 
 const $ = (id) => document.getElementById(id);
 
@@ -34,7 +34,7 @@ function showQuestion(data) {
   $('drawing').hidden = true;
   $('idle').hidden = true;
   $('q-session').textContent = sessionName(data.session);
-  $('q-speaker').textContent = `提問對象：${data.speaker}`;
+  $('q-speaker').textContent = `提問對象：${speakerLabel(data.speaker)}`;
   $('q-text').textContent = data.content;
   $('q-nick').textContent = data.nickname;
   const q = $('question');
