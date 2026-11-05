@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>大螢幕｜下一代花蓮地方實踐指南</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="screen textured">
+  <header class="hero">
+    <div class="hero__inner">
+      <div class="hero__title">下一代花蓮地方實踐指南</div>
+      <div class="hero__date"><span class="year">2026</span><span class="line"></span><span>11.07 SAT.</span></div>
+    </div>
+  </header>
+
+  <main class="stage" id="stage">
+    <section class="idle" id="idle">
+      <div>
+        <h1 class="idle__title">下一代<br>花蓮地方<br>實踐指南</h1>
+        <div class="idle__date">11.07<span class="line"></span><small>SAT.</small></div>
+      </div>
+      <div class="idle__qr">
+        <div id="qr"></div>
+        <p>掃描 QR Code 提問</p>
+      </div>
+    </section>
+
+    <section class="question" id="question" hidden>
+      <div class="question__tags">
+        <span class="tag tag--session" id="q-session"></span>
+        <span class="tag tag--speaker" id="q-speaker"></span>
+      </div>
+      <div class="question__box" id="q-box"><p class="question__text" id="q-text"></p></div>
+      <div class="question__by" id="q-by"></div>
+    </section>
+
+    <div class="drawing" id="drawing" hidden>
+      <div class="drawing__star"></div>
+      <div>抽籤中</div>
+    </div>
+  </main>
+
+  <button class="btn btn--sm fs-btn" id="fs" type="button">全螢幕</button>
+
+  <script type="module" src="assets/js/screen.js"></script>
+</body>
+</html>

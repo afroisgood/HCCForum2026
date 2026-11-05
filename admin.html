@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>後台管理｜下一代花蓮地方實踐指南</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="admin">
+  <header class="hero">
+    <div class="hero__inner">
+      <h1 class="hero__title"><small>後台管理</small>下一代花蓮地方實踐指南</h1>
+      <div class="toolbar" id="top-actions" hidden>
+        <a class="btn btn--sm btn--lime" href="screen.html" target="_blank" rel="noopener">開啟大螢幕</a>
+        <a class="btn btn--sm btn--ghost" href="./" target="_blank" rel="noopener">開啟提問頁</a>
+        <button class="btn btn--sm btn--ghost" id="logout" type="button">登出</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-main" id="app">
+    <!-- 登入 -->
+    <form class="panel login" id="login" hidden>
+      <h2>管理者登入</h2>
+      <label class="label" for="password" style="display:block;font-weight:700;margin-bottom:8px">密碼</label>
+      <input class="input" type="password" id="password" autocomplete="current-password" required>
+      <p class="form-error" id="login-error" role="alert"></p>
+      <button class="btn btn--block" type="submit">登入</button>
+    </form>
+
+    <div id="dashboard" hidden>
+      <div class="grid-2">
+        <!-- 抽籤 -->
+        <section class="panel">
+          <h2>抽籤</h2>
+          <div class="draw-box">
+            <div class="seg" id="draw-session" role="group" aria-label="抽籤場次"></div>
+            <div class="toolbar">
+              <label for="draw-speaker">講師</label>
+              <select class="select" id="draw-speaker"></select>
+            </div>
+            <div class="draw-count">籤筒內尚有<strong id="pool-count">0</strong>題可抽</div>
+            <button class="btn btn--pink btn--draw" id="draw" type="button">抽出一題 → 顯示在大螢幕</button>
+            <button class="btn btn--ghost" id="clear-screen" type="button">清空大螢幕（回到 QR Code 畫面）</button>
+          </div>
+        </section>
+
+        <!-- 大螢幕目前畫面 -->
+        <section class="panel">
+          <h2>大螢幕目前顯示</h2>
+          <div id="preview" class="preview preview--idle">待機畫面：活動名稱、日期與提問 QR Code</div>
+          <hr style="border:0;border-top:1px solid #e1ecdc;margin:18px 0">
+          <div class="toolbar">
+            <span>提問狀態</span>
+            <span class="status-pill open" id="open-pill">開放中</span>
+            <button class="btn btn--sm" id="toggle-open" type="button">關閉提問</button>
+          </div>
+          <div class="toolbar" style="margin-top:12px">
+            <button class="btn btn--sm btn--orange" id="export-word" type="button">匯出 Word</button>
+            <button class="btn btn--sm btn--lime" id="download-qr" type="button">下載 QR Code</button>
+            <button class="btn btn--sm btn--ghost" id="wipe" type="button">清空所有提問（測試後使用）</button>
+          </div>
+        </section>
+      </div>
+
+      <!-- 問題列表 -->
+      <section class="panel">
+        <h2>所有提問</h2>
+        <div class="toolbar">
+          <select class="select" id="f-session" aria-label="場次篩選"></select>
+          <select class="select" id="f-speaker" aria-label="講師篩選"></select>
+          <select class="select" id="f-status" aria-label="狀態篩選">
+            <option value="">全部狀態</option>
+            <option value="pool">籤筒中</option>
+            <option value="drawn">已抽中</option>
+            <option value="excluded">不參加抽籤</option>
+          </select>
+        </div>
+        <div class="stats" id="stats"></div>
+        <div class="q-list" id="q-list"></div>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="assets/js/admin.js"></script>
+</body>
+</html>

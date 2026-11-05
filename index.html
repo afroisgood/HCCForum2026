@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>線上提問｜下一代花蓮地方實踐指南</title>
+  <meta name="description" content="2026 花蓮縣文化局社造論壇「下一代花蓮地方實踐指南」現場線上提問">
+  <meta name="theme-color" content="#2aa846">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="ask textured">
+  <header class="hero">
+    <div class="hero__inner">
+      <h1 class="hero__title">下一代<br>花蓮地方實踐指南</h1>
+      <div class="hero__date"><span class="year">2026</span><span class="line"></span><span>11.07 SAT.</span></div>
+    </div>
+  </header>
+
+  <main>
+    <p class="ask-intro">歡迎提問！問題會先收進籤筒，<br>於現場問答時間抽出並顯示在大螢幕上。</p>
+
+    <div id="app">
+      <form id="ask-form" class="card" novalidate>
+        <fieldset class="field">
+          <legend><span class="step">1</span>選擇場次<span class="req">*</span></legend>
+          <div class="choices choices--sessions" id="session-choices"></div>
+        </fieldset>
+
+        <fieldset class="field" id="speaker-field">
+          <legend><span class="step">2</span>想問哪位講師<span class="req">*</span></legend>
+          <div class="choices choices--speakers" id="speaker-choices"></div>
+          <p class="hint" id="speaker-hint">請先選擇場次</p>
+        </fieldset>
+
+        <div class="field">
+          <label class="label" for="nickname"><span class="step">3</span>暱稱<span class="req">*</span></label>
+          <input class="input" id="nickname" name="nickname" maxlength="20" autocomplete="nickname" placeholder="例如：花蓮小鳥">
+          <p class="hint">被抽中時，暱稱會與問題一起顯示在大螢幕上。</p>
+        </div>
+
+        <div class="field">
+          <label class="label" for="content"><span class="step">4</span>你的問題<span class="req">*</span></label>
+          <textarea class="textarea" id="content" name="content" maxlength="200" placeholder="請輸入想問的問題（200 字以內）"></textarea>
+          <div class="counter" id="counter">0 / 200</div>
+        </div>
+
+        <div class="field">
+          <details class="privacy">
+            <summary>個人資料蒐集告知及使用規範</summary>
+            <ul>
+              <li>蒐集單位：花蓮縣文化局，委託社團法人花蓮縣牛犁社區交流協會辦理。</li>
+              <li>蒐集目的：「下一代花蓮地方實踐指南」論壇現場問答交流及活動成果紀錄。</li>
+              <li>蒐集項目：您填寫的暱稱與提問內容；不蒐集姓名、電話等可直接識別個人之資料，請勿於暱稱或提問中填寫。</li>
+              <li>利用方式：提問僅由主辦單位於後台檢視；被抽中的提問及暱稱將公開顯示於現場大螢幕，並收錄於活動成果報告。</li>
+              <li>利用期間：自活動當日起至活動成果報告結案為止。</li>
+              <li>依個人資料保護法第 3 條，您可就您的資料向主辦單位請求查詢、刪除或停止利用（聯絡電話 03-8650243）。</li>
+              <li>使用規範：請友善提問，勿發表人身攻擊、歧視、不實或與論壇無關之內容，主辦單位得逕行刪除。</li>
+            </ul>
+          </details>
+          <label class="agree"><input type="checkbox" id="agree">我已閱讀並同意上述說明</label>
+        </div>
+
+        <p class="form-error" id="form-error" role="alert"></p>
+        <button class="btn btn--orange btn--block" id="submit" type="submit">送出提問</button>
+      </form>
+
+      <section class="card success" id="success" hidden>
+        <div class="success__icon" aria-hidden="true"></div>
+        <h2>提問已送出！</h2>
+        <p>你的問題已收進籤筒，<br>若被抽中，將顯示在現場大螢幕上。</p>
+        <button class="btn btn--block" id="again" type="button">再問一題</button>
+      </section>
+
+      <section class="card" id="closed" hidden>
+        <h2 style="margin-top:0;letter-spacing:.1em">提問已截止</h2>
+        <p style="margin:0">感謝你的參與！</p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-foot">花蓮縣文化局社造論壇｜璞石咖啡 × 光之島共享基地</footer>
+
+  <script type="module" src="assets/js/ask.js"></script>
+</body>
+</html>
