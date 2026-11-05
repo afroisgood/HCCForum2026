@@ -12,8 +12,9 @@
   --ink: #111;
   --white: #fff;
   --radius: 18px;
-  --font: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', 'Heiti TC', system-ui, sans-serif;
-  --serif: 'Noto Serif TC', Georgia, 'Times New Roman', serif;
+  /* 源泉圓體（assets/css/fonts.css），載入前或缺字時退回系統字型 */
+  --font: var(--font-gensen), 'PingFang TC', 'Microsoft JhengHei', 'Heiti TC', system-ui, sans-serif;
+  --serif: var(--font);
 }
 
 * { box-sizing: border-box; }
@@ -31,9 +32,22 @@ button, input, textarea, select { font: inherit; }
 /* ---------- 共用：海報標頭 ---------- */
 .hero {
   position: relative;
-  background: var(--blue) url('../img/hero.jpg') center 35% / cover no-repeat;
+  background: var(--blue);
   color: var(--white);
   overflow: hidden;
+}
+/* 海報插畫：不超過原圖寬度（1414px）以免放大變糊，更寬的螢幕兩側淡出到天空藍 */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url('../img/hero.jpg') center var(--hero-y, 35%) / cover no-repeat;
+}
+@media (min-width: 1415px) {
+  .hero::before {
+    background-size: 1414px auto;
+    -webkit-mask-image: linear-gradient(90deg, transparent calc(50% - 707px), #000 calc(50% - 540px), #000 calc(50% + 540px), transparent calc(50% + 707px));
+    mask-image: linear-gradient(90deg, transparent calc(50% - 707px), #000 calc(50% - 540px), #000 calc(50% + 540px), transparent calc(50% + 707px));
+  }
 }
 .hero::after {
   content: '';
@@ -58,11 +72,13 @@ button, input, textarea, select { font: inherit; }
 .hero__date .year { font-family: var(--serif); letter-spacing: .3em; }
 .hero__date .line { flex: 0 0 3em; height: 2px; background: currentColor; opacity: .9; }
 
+/* 海報草叢紋理：以原始解析度重複拼貼，不放大 */
 .textured {
   min-height: 100vh;
   background:
-    linear-gradient(rgba(42,168,70,.82), rgba(42,168,70,.82)),
-    url('../img/leaves.jpg') center top / cover;
+    linear-gradient(rgba(42,168,70,.45), rgba(42,168,70,.45)),
+    url('../img/texture.jpg') 0 0 / 258px 156px repeat;
+  background-color: var(--green);
 }
 
 .notice {
@@ -190,7 +206,7 @@ code { background: #f1f4ef; padding: 1px 6px; border-radius: 6px; font-size: .9e
   display: grid; grid-template-rows: auto 1fr;
   color: var(--white);
 }
-.screen .hero { background-position: center 62%; height: 21vh; padding: 0 4vw 1.6vh; display: flex; align-items: flex-end; }
+.screen .hero { --hero-y: 62%; height: 21vh; padding: 0 4vw 1.6vh; display: flex; align-items: flex-end; }
 .screen .hero::after { background: linear-gradient(180deg, rgba(0,0,0,0) 20%, rgba(19,112,44,.9) 100%); }
 .screen .hero__inner { display: flex; align-items: baseline; justify-content: space-between; width: 100%; gap: 2vw; }
 .screen .hero__title { font-size: 3.4vh; }
