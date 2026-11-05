@@ -140,7 +140,7 @@ code { background: #f1f4ef; padding: 1px 6px; border-radius: 6px; font-size: .9e
 
 .choices { display: grid; gap: 10px; }
 .choices--sessions { grid-template-columns: 1fr; }
-.choices--speakers { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+.choices--speakers { grid-template-columns: 1fr; }
 .choice { position: relative; }
 .choice input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
 .choice span {
